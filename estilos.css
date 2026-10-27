@@ -1,0 +1,198 @@
+
+body {
+  font-family: cursive;
+  background-color: #a8e6c9;
+  background-image: url("img/fondo\ 3.png");
+  background-size:  contain;
+  background-position: center;
+  background-attachment: fixed;
+  margin: 0;
+}
+
+.pagina {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: rgba(238, 250, 243, 0.5);
+}
+
+.aviso {
+  background-color: #a8e6c9;
+  text-align: center;
+  padding: 8px;
+  font-size: 14px;
+}
+
+
+header {
+  background-color: #d9f5e7;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #1e4d3b;
+}
+
+nav a {
+  color: #1e4d3b;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.bienvenida {
+  text-align: center;
+  padding: 40px 20px;
+}.bienvenida {
+  text-align: center;
+  padding: 40px 20px;
+  position: relative;
+}
+
+
+.bienvenida::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("img/Logo\ naturalista\ Tnaturist\ con\ flor\ botánica.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.45;
+}
+
+
+.bienvenida * {
+  position: relative;
+}
+
+
+.cinta {
+  background-image: url("img/cinta.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  color: white;
+  display: inline-block;
+  padding: 18px 50px;
+  font-size: 22px;
+  margin: 0 0 15px 0;
+}
+
+
+.boton {
+  background-color: #1e4d3b;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.boton:hover {
+  background-color: #2f7d5b;
+}
+
+.boton-claro {
+  background-color: white;
+  color: #1e4d3b;
+  border: 1px solid #1e4d3b;
+}
+
+
+.seccion {
+  background-color: #d9f5e7;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.productos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.producto {
+  background-color: white;
+  width: 190px;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.frasco {
+  height: 130px;
+  display: block;
+  margin: 10px auto;
+}
+
+.precio {
+  font-weight: bold;
+}
+
+
+#carrito {
+  background-color: white;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+
+.formulario {
+  background-color: white;
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.formulario h2 {
+  text-align: center;
+  color: #1e4d3b;
+}
+
+.formulario label {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.formulario input,
+.formulario select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  box-sizing: border-box;
+}
+
+.mensaje {
+  color: red;
+  font-size: 14px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+}

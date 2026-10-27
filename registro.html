@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro - T Naturist</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<div class="pagina">
+
+  <header>
+    <div class="logo">🌿 T NATURIST</div>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="inicio.html">Iniciar sesión</a>
+    </nav>
+  </header>
+
+  <div class="formulario">
+    <h2>Crear cuenta</h2>
+
+    <label>Nombre completo</label>
+    <input type="text" id="nombre">
+
+    <label>Tipo de documento</label>
+    <select id="tipo">
+      <option value="">Selecciona</option>
+      <option>Cédula de ciudadanía</option>
+      <option>Tarjeta de identidad</option>
+      <option>Cédula de extranjería</option>
+      <option>Pasaporte</option>
+    </select>
+
+    <label>Número de documento</label>
+    <input type="text" id="documento">
+
+    <label>Correo electrónico</label>
+    <input type="email" id="correo">
+
+    <label>Nombre de usuario</label>
+    <input type="text" id="usuario">
+
+    <label>Contraseña</label>
+    <input type="password" id="clave">
+
+    <label>Confirmar contraseña</label>
+    <input type="password" id="clave2">
+
+    <p class="mensaje" id="mensaje"></p>
+    <button class="boton" onclick="registrar()">Registrarse</button>
+    <p>¿Ya tienes cuenta? <a href="inicio.html">Inicia sesión</a></p>
+  </div>
+</div>
+
+<script>
+  function registrar() {
+    var nombre = document.getElementById("nombre").value;
+    var tipo = document.getElementById("tipo").value;
+    var documento = document.getElementById("documento").value;
+    var correo = document.getElementById("correo").value;
+    var usuario = document.getElementById("usuario").value;
+    var clave = document.getElementById("clave").value;
+    var clave2 = document.getElementById("clave2").value;
+    var mensaje = document.getElementById("mensaje");
+
+    // Revisar que todo esté lleno
+    if (nombre == "" || tipo == "" || documento == "" || correo == "" || usuario == "" || clave == "") {
+      mensaje.innerHTML = "Completa todos los campos";
+      return;
+    }
+    if (clave != clave2) {
+      mensaje.innerHTML = "Las contraseñas no coinciden";
+      return;
+    }
+
+    // Traer los usuarios que ya existen
+    var usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+    for (var i = 0; i < usuarios.length; i++) {
+      if (usuarios[i].usuario == usuario || usuarios[i].correo == correo) {
+        mensaje.innerHTML = "Ese usuario o correo ya está registrado";
+        return;
+      }
+    }
+
+    // Guardar el nuevo usuario
+    usuarios.push({
+      nombre: nombre, tipo: tipo, documento: documento,
+      correo: correo, usuario: usuario, clave: clave
+    });
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+    alert("Cuenta creada. Ahora inicia sesión.");
+    location.href = "inicio.html";
+  }
+</script>
+</body>
+</html>

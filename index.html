@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>T Naturist</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<div class="pagina">
+
+  <div class="aviso">Envíos seguros a todo el país</div>
+
+  <header>
+    <div class="logo">🌿 T NATURIST</div>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="#productos">Catálogo</a>
+      <a href="#carrito">Carrito (<span id="cantidad">0</span>)</a>
+      <span id="enlaces">
+        <a href="inicio.html">Iniciar sesión</a>
+        <a href="registro.html">Registrarse</a>
+      </span>
+    </nav>
+  </header>
+
+  <div class="bienvenida">
+    <h1 class="cinta">BIENVENIDO A TU TIENDA NATURAL</h1>
+    <h3>CONECTA CON EL BIENESTAR</h3>
+    <p>Descubre alternativas puras para tu cuidado integral.</p>
+    <a href="#productos" class="boton">Ver Catálogo</a>
+  </div>
+
+  <div class="seccion" id="productos">
+    <h2>NUESTROS PRODUCTOS DESTACADOS</h2>
+    <div class="productos">
+
+      <div class="producto">
+        <img class="frasco" src="img/vitamina-c.svg" alt="Vitamina C Natural">
+        <h4>Vitamina C Natural</h4>
+        <p>Refuerza tus defensas a diario</p>
+        <p class="precio">$24.700 COP</p>
+        <button class="boton" onclick="agregar('Vitamina C Natural', 24700)">Añadir al Carrito</button>
+      </div>
+
+      <div class="producto">
+        <img class="frasco" src="img/vitamina-d3.svg" alt="Vitamina D3">
+        <h4>Vitamina D3</h4>
+        <p>Refuerza tus defensas a diario</p>
+        <p class="precio">$24.700 COP</p>
+        <button class="boton" onclick="agregar('Vitamina D3', 24700)">Añadir al Carrito</button>
+      </div>
+
+      <div class="producto">
+        <img class="frasco" src="img/magnesio.svg" alt="Magnesio Marino">
+        <h4>Magnesio Marino</h4>
+        <p>Refuerza tus defensas a diario</p>
+        <p class="precio">$24.700 COP</p>
+        <button class="boton" onclick="agregar('Magnesio Marino', 24700)">Añadir al Carrito</button>
+      </div>
+
+      <div class="producto">
+        <img class="frasco" src="img/colageno.svg" alt="Colágeno Hidrolizado">
+        <h4>Colágeno Hidrolizado</h4>
+        <p>Refuerza tus defensas a diario</p>
+        <p class="precio">$24.700 COP</p>
+        <button class="boton" onclick="agregar('Colágeno Hidrolizado', 24700)">Añadir al Carrito</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="seccion">
+    <h2>🛒 TU CARRITO</h2>
+    <div id="carrito"></div>
+  </div>
+
+  <footer>T Naturist - ayuda@tnaturist.com.co</footer>
+</div>
+
+<script>
+ 
+  var carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  
+  var usuarioActual = localStorage.getItem("usuarioActual");
+  if (usuarioActual) {
+    document.getElementById("enlaces").innerHTML =
+      "Hola, " + usuarioActual + ' <a href="#" onclick="cerrarSesion()">Salir</a>';
+  }
+
+  function cerrarSesion() {
+    localStorage.removeItem("usuarioActual");
+    location.reload();
+  }
+
+  function agregar(nombre, precio) {
+    carrito.push({ nombre: nombre, precio: precio });
+    mostrarCarrito();
+  }
+
+  function quitar(posicion) {
+    carrito.splice(posicion, 1);
+    mostrarCarrito();
+  }
+
+  function comprar() {
+    if (carrito.length == 0) {
+      alert("El carrito está vacío");
+    } else if (!usuarioActual) {
+      alert("Debes iniciar sesión para comprar");
+      location.href = "inicio.html";
+    } else {
+      alert("Gracias por tu compra, " + usuarioActual);
+      carrito = [];
+      mostrarCarrito();
+    }
+  }
+
+  function mostrarCarrito() {
+    var html = "";
+    var total = 0;
+
+    for (var i = 0; i < carrito.length; i++) {
+      total = total + carrito[i].precio;
+      html += '<div class="item">' + carrito[i].nombre + " - $" + carrito[i].precio +
+              ' <button onclick="quitar(' + i + ')">Quitar</button></div>';
+    }
+
+    if (carrito.length == 0) {
+      html = "<p>Tu carrito está vacío.</p>";
+    } else {
+      html += "<p><b>Total: $" + total + " COP</b></p>";
+      html += '<button class="boton" onclick="comprar()">Comprar</button>';
+    }
+
+    document.getElementById("carrito").innerHTML = html;
+    document.getElementById("cantidad").innerHTML = carrito.length;
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+  }
+
+  mostrarCarrito();
+</script>
+</body>
+</html>

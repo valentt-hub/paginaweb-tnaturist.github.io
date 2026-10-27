@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Iniciar sesión - T Naturist</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<div class="pagina">
+
+  <header>
+    <div class="logo">🌿 T NATURIST</div>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="registro.html">Registrarse</a>
+    </nav>
+  </header>
+
+  <div class="formulario">
+    <h2>Iniciar sesión</h2>
+
+    <label>Nombre de usuario</label>
+    <input type="text" id="usuario">
+
+    <label>Contraseña</label>
+    <input type="password" id="clave">
+
+    <p class="mensaje" id="mensaje"></p>
+    <button class="boton" onclick="entrar()">Entrar</button>
+    <p>¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
+  </div>
+</div>
+
+<script>
+  function entrar() {
+    var usuario = document.getElementById("usuario").value;
+    var clave = document.getElementById("clave").value;
+    var mensaje = document.getElementById("mensaje");
+    var usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+    // Buscar si el usuario existe y la contraseña es correcta
+    for (var i = 0; i < usuarios.length; i++) {
+      if (usuarios[i].usuario == usuario && usuarios[i].clave == clave) {
+        localStorage.setItem("usuarioActual", usuario);
+        location.href = "index.html";
+        return;
+      }
+    }
+
+    mensaje.innerHTML = "Usuario o contraseña incorrectos. Si no tienes cuenta, regístrate primero.";
+  }
+</script>
+</body>
+</html>
